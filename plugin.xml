@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="nebel.health.step"
+        version="3.0.2">
+
+    <name>StepListener</name>
+    <description>StepListener</description>
+    <license>MIT</license>
+    <keywords>StepListener</keywords>
+    <repo>https://github.com/pronebel/StepListener.git</repo>
+    <issue>https://github.com/pronebel/StepListener/issues</issue>
+
+    <engines>
+        <engine name="cordova" version=">=3.5"/>
+    </engines>
+
+    <js-module src="www/StepListener.js" name="StepListener">
+        <clobbers target="window.plugins.StepListener"/>
+    </js-module>
+
+     <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+	        <feature name="StepListener">
+	            <param name="android-package" value="nebel.health.step.StepListener"/>
+	        </feature>
+	    </config-file>
+
+	    <config-file target="AndroidManifest.xml" parent="/*">
+	        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        </config-file>
+
+	    <source-file src="src/android/StepListener.java" target-dir="src/nebel.health.step" />
+    </platform>
+
+
+</plugin>
