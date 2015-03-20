@@ -31,9 +31,9 @@ public class StepListener extends CordovaPlugin implements SensorEventListener {
     int status; // status of listener
     long lastAccessTime;
 
-    public static int CURRENT_SETP = 0;
+    public  int CURRENT_SETP = 0;
 
-    public static float SENSITIVITY = 0; // SENSITIVITY灵敏度
+    public static float SENSITIVITY = 0; 
 
     private float mLastValues[] = new float[3 * 2];
     private float mScale[] = new float[2];
@@ -41,9 +41,7 @@ public class StepListener extends CordovaPlugin implements SensorEventListener {
     private static long end = 0;
     private static long start = 0;
 
-    /**
-     * 最后加速度方向
-     */
+
     private float mLastDirections[] = new float[3 * 2];
     private float mLastExtremes[][] = { new float[3 * 2], new float[3 * 2] };
     private float mLastDiff[] = new float[3 * 2];
@@ -55,11 +53,7 @@ public class StepListener extends CordovaPlugin implements SensorEventListener {
 
     private CallbackContext callbackContext;
 
-    /**
-     * 传入上下文的构造函数
-     * 
-     * @param context
-     */
+
     public StepListener(Context context) {
 	// TODO Auto-generated constructor stub
 	super();
@@ -172,7 +166,7 @@ public class StepListener extends CordovaPlugin implements SensorEventListener {
 
 		if (isAlmostAsLargeAsPrevious && isPreviousLargeEnough&& isNotContra) {
 		    end = System.currentTimeMillis();
-		    if (end - start > 500) {// 此时判断为走了一步
+		    if (end - start > 500) { 
 			Log.i("StepDetector", "CURRENT_SETP:" + CURRENT_SETP);
 			CURRENT_SETP++;
 			mLastMatch = extType;
@@ -196,6 +190,10 @@ public class StepListener extends CordovaPlugin implements SensorEventListener {
      */
     public int getStatus() {
 	return this.status;
+    }
+
+    public int getCurrentStep() {
+        return this.CURRENT_SETP;
     }
 
     /**
