@@ -33,7 +33,7 @@ public class StepListener extends CordovaPlugin implements SensorEventListener {
 
     public  int CURRENT_SETP = 0;
 
-    public static float SENSITIVITY = 0; 
+    public static float SENSITIVITY = 3;
 
     private float mLastValues[] = new float[3 * 2];
     private float mScale[] = new float[2];
@@ -54,9 +54,9 @@ public class StepListener extends CordovaPlugin implements SensorEventListener {
     private CallbackContext callbackContext;
 
 
-    public StepListener(Context context) {
-	// TODO Auto-generated constructor stub
-	super();
+    public StepListener() {
+	
+	
 	int h = 480;
 	mYOffset = h * 0.5f;
 	mScale[0] = -(h * 0.5f * (1.0f / (SensorManager.STANDARD_GRAVITY * 2)));
@@ -78,7 +78,11 @@ public class StepListener extends CordovaPlugin implements SensorEventListener {
 	} else if (action.equals("stop")) {
 	    this.stop();
 	} else if (action.equals("getStatus")) {
-
+	    int i = this.getStatus();
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, i));
+	}else if (action.equals("getCurrentStep")) {
+	    int __step = this.getCurrentStep();
+            callbackContext.success(__step);
 	} else {
 
 	    return false;
